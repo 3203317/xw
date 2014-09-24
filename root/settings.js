@@ -1,7 +1,7 @@
 module.exports = { 
 	cookieSecret: 'wx',
 	db: 'wx',
-	host: '127.0.0.1',
+	host: '114.215.156.101',
 	port: 27017,
 	user: 'sa',
 	pass: 'wx123',

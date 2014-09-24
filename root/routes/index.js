@@ -1,4 +1,5 @@
 var site = require('../controllers/site'),
+	manager = require('../controllers/manager'),
 	user = require('../controllers/user');
 
 var virtualPath = '',
@@ -10,6 +11,8 @@ module.exports = function(app){
 	app.get('/', site.indexUI);
 
 	app.get('/user/login$', user.loginUI);
+
+	app.get('/manager/login$', manager.loginUI);
 };
 
 /**
