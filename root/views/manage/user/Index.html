@@ -3,7 +3,7 @@
 	<head>
 		#parse('pagelet/IndexHeader.html')
 		<link rel='stylesheet' type='text/css' href='${cdn}bootstrap-datetimepicker/2.2.0/css/bootstrap-datetimepicker.min.css' media='screen'>
-		<link rel='stylesheet' type='text/css' href='${virtualPath}public/manage/css/index.css?v3' media='screen' />
+		<link rel='stylesheet/less' type='text/css' href='${virtualPath}public/manage/css/index.less?v3' media='screen' />
 	</head>
 	<body>
 		#parse('manage/pagelet/TopBanner.html')
@@ -16,7 +16,7 @@
 				<div class='col-sm-12 col-md-10'>
 					<div id='info_alert' class='alert alert-info'>
 						<button type='button' class='close' data-dismiss='alert'>&times;</button>
-						<strong>提示：</strong>设置系统中所有的文章标签信息。
+						<strong>提示：</strong>设置系统中所有的用户信息。
 					</div>
 					<div class='panel panel-info'>
 						<div class='panel-heading'>
@@ -25,7 +25,7 @@
 						<div class='panel-body'>
 							<form class='form-inline' role='form'>
 								<div class='form-group'>
-									<input type='text' class='form-control' id='inputEmail3' placeholder='标签名称'>
+									<input type='text' class='form-control' id='inputEmail3' placeholder='用户名'>
 								</div>
 								<button type='button' class='btn btn-default glyphicon glyphicon-search'>&#8201;查询</button>
 							</form>
@@ -39,7 +39,7 @@
 								<button id='btn_del' class='btn btn-danger glyphicon glyphicon-remove-sign'>删除</button>
 							</div>
 						</div>
-						#parse('manage/article/tag/List.html')
+						#parse('manage/user/List.html')
 					</div>
 				</div>
 			</div>
