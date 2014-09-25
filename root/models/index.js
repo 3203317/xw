@@ -24,6 +24,7 @@ require('./Company');
 require('./Category');
 require('./Tag');
 require('./Manager');
+require('./Product');
 
 exports.User = mongoose.model('User');
 exports.Article = mongoose.model('Article');
@@ -32,3 +33,4 @@ exports.Company = mongoose.model('Company');
 exports.Category = mongoose.model('Category');
 exports.Tag = mongoose.model('Tag');
 exports.Manager = mongoose.model('Manager');
+exports.Product = mongoose.model('Product');

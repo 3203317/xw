@@ -3,6 +3,25 @@ var md5 = require('../lib/md5');
 var models = require('../models'),
 	User = models.User;
 
+exports.editInfo = function(newInfo, cb){
+	var id = newInfo.id;
+	delete newInfo.id;
+
+	User.update({
+		_id: id
+	}, newInfo, function (err, count){
+		if(err) return cb(err);
+		cb(null, 0, null, count);
+	});
+};
+
+exports.findAll = function(cb){
+	User.find(null, null, null, function (err, docs){
+		if(err) return cb(err);
+		cb(null, 0, null, docs);
+	});
+};
+
 /**
  * 用户登陆
  *
