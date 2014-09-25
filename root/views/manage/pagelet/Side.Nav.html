@@ -5,9 +5,9 @@
 				<a data-toggle='collapse' data-parent='#accordion' href='#collapseSys'>系统管理</a>
 			</h4>
 		</div>
-		<div id='collapseSys' class='panel-collapse collapse'>
+		<div id='collapseSys' class='panel-collapse collapse in'>
 			<div class='panel-body'>
-				<p><a href='user/'>用户管理</a></p>
+				<p><a href='${virtualPath}manage/user/'>用户管理</a></p>
 			</div>
 		</div>
 	</div>
@@ -17,10 +17,10 @@
 				<a data-toggle='collapse' data-parent='#accordion' href='#collapseBlog'>博客管理</a>
 			</h4>
 		</div>
-		<div id='collapseBlog' class='panel-collapse collapse in'>
+		<div id='collapseBlog' class='panel-collapse collapse'>
 			<div class='panel-body'>
-				<p><a href='article/category/'>文章分类</a></p>
-				<p><a href='article/tag/'>文章标签</a></p>
+				<p><a href='${virtualPath}manage/article/category/'>文章分类</a></p>
+				<p><a href='${virtualPath}manage/article/tag/'>文章标签</a></p>
 			</div>
 		</div>
 	</div>

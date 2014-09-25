@@ -7,6 +7,16 @@ var title = 'FOREWORLD 洪荒',
 var Category = require('../biz/category'),
 	Tag = require('../biz/tag');
 
+exports.user_indexUI = function(req, res, next){
+        res.render('manage/user/Index', {
+                title: '用户管理 | '+ title,
+                description: '',
+                keywords: ',Bootstrap3,nodejs,express',
+                virtualPath: virtualPath,
+                cdn: conf.cdn
+        });
+};
+
 exports.indexUI = function(req, res, next){
 	res.render('manage/Index', {
 		title: '后台管理 - '+ title,
