@@ -2,8 +2,8 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	ObjectId = Schema.Types.ObjectId;
 
-var UserSchema = new Schema({
-	UserName: {				// 用户名
+var CustomerSchema = new Schema({
+	CustName: {				// 用户名
 		// required: true,
 		// match: /[a-z]/,
 		unique: true,
@@ -36,10 +36,6 @@ var UserSchema = new Schema({
 	}, IsDel: {				// 删除标记, 删除1, 否0
 		type: Number,
 		default: 0
-	}, ApiKey: {
-		type: String
-	}, SecKey: {			// 密钥
-		type: String
 	}
 }, {
 	versionKey: false,
@@ -50,57 +46,4 @@ var UserSchema = new Schema({
 	}
 });
 
-/**
- * 通过用户名查找用户
- *
- * @params {String} userName 用户名（忽略大小写）
- * @params {Function} cb 回调函数
- * @return {Object} 用户对象
- */
-UserSchema.statics.findUserByName = function(userName, cb){
-	this.findOne({
-		UserName: new RegExp('^'+ userName +'$', 'i')
-	}, null, null, function (err, doc){
-		if(err) return cb(err);
-		cb(null, doc);
-	});
-};
-
-/**
- * 通过用户名或电子邮箱查找用户
- *
- * @params {String} userName 用户名（忽略大小写）
- * @params {String} email 电子邮箱（忽略大小写）
- * @params {Function} cb 回调函数
- * @return {Object} 用户对象
- */
-UserSchema.statics.findUserByNameEmail = function(userName, email, cb){
-	this.findOne({
-		'$or': [{
-			UserName: new RegExp('^'+ userName +'$', 'i')
-		}, {
-			Email: new RegExp('^'+ email +'$', 'i')
-		}]
-	}, null, null, function (err, doc){
-		if(err) return cb(err);
-		cb(null, doc);
-	});
-};
-
-/**
- * 通过邮箱查询用户
- *
- * @params {String} email 电子邮箱（忽略大小写）
- * @params {Function} cb 回调函数
- * @return {Object} 用户对象
- */
-UserSchema.statics.findUserByEmail = function(email, cb){
-	this.findOne({
-		Email: new RegExp('^'+ email +'$', 'i')
-	}, null, null, function (err, doc){
-		if(err) return cb(err);
-		cb(null, doc);
-	});
-};
-
-mongoose.model('User', UserSchema);
+mongoose.model('Customer', CustomerSchema);
