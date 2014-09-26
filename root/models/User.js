@@ -33,6 +33,9 @@ var UserSchema = new Schema({
 	}, Status: {			// 状态, 未激活0, 邮箱激活1, 短信激活2
 		type: Number,
 		default: 0
+	}, IsEnable: {
+		type: Number,
+		default: 0
 	}, IsDel: {				// 删除标记, 删除1, 否0
 		type: Number,
 		default: 0
@@ -40,6 +43,9 @@ var UserSchema = new Schema({
 		type: String
 	}, SecKey: {			// 密钥
 		type: String
+	}, Type: {
+		type: Number,
+		default: 3
 	}
 }, {
 	versionKey: false,
