@@ -17,6 +17,9 @@ var ManagerSchema = new Schema({
 		type: String,
 		index: true,
 		required: true
+	}, IsEnable: {
+		type: Number,
+		default: 0
 	}, IsDel: {				// 删除标记, 删除1, 否0
 		type: Number,
 		default: 0
@@ -41,9 +44,9 @@ var ManagerSchema = new Schema({
  * @params {Function} cb 回调函数
  * @return {Object} 用户对象
  */
-ManagerSchema.statics.findUserByName = function(userName, cb){
+ManagerSchema.statics.findUserByName = function(user_name, cb){
 	this.findOne({
-		UserName: new RegExp('^'+ userName +'$', 'i')
+		UserName: new RegExp('^'+ user_name +'$', 'i')
 	}, null, null, function (err, doc){
 		if(err) return cb(err);
 		cb(null, doc);

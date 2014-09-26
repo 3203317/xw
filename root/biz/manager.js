@@ -3,6 +3,32 @@ var md5 = require('../lib/md5');
 var models = require('../models'),
 	Manager = models.Manager;
 
+exports.disable = function(user_name, cb){
+	Manager.findUserByName(user_name, function (err, doc){
+		if(err) return cb(err);
+		if(!doc) return cb(null, 3, ['找不到该用户', 'UserName']);
+		doc.update({
+			IsEnable: 0
+		}, function (err, count){
+			if(err) return cb(err);
+			cb(null, 0, null, count);
+		});
+	});
+};
+
+exports.enable = function(user_name, cb){
+	Manager.findUserByName(user_name, function (err, doc){
+		if(err) return cb(err);
+		if(!doc) return cb(null, 3, ['找不到该用户', 'UserName']);
+		doc.update({
+			IsEnable: 1
+		}, function (err, count){
+			if(err) return cb(err);
+			cb(null, 0, null, count);
+		});
+	});
+};
+
 exports.editInfo = function(newInfo, cb){
 	var id = newInfo.id;
 	delete newInfo.id;
@@ -16,9 +42,13 @@ exports.editInfo = function(newInfo, cb){
 };
 
 exports.saveNew = function(newInfo, cb){
-	Manager.create(newInfo, function (err, doc){
+	Manager.findUserByName(newInfo.UserName, function (err, doc){
 		if(err) return cb(err);
-		cb(null, 0, null, doc);
+		if(doc) return cb(null, 3, ['该用户已存在', 'UserName'], doc);
+		Manager.create(newInfo, function (err, doc){
+			if(err) return cb(err);
+			cb(null, 0, null, doc);
+		});
 	});
 };
 
