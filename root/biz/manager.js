@@ -32,6 +32,9 @@ exports.enable = function(user_name, cb){
 exports.editInfo = function(newInfo, cb){
 	var id = newInfo.id;
 	delete newInfo.id;
+	delete newInfo.IsEnable;
+	delete newInfo.UserName;
+	delete newInfo.UserPass;
 
 	Manager.update({
 		_id: id

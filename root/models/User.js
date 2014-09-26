@@ -53,13 +53,13 @@ var UserSchema = new Schema({
 /**
  * 通过用户名查找用户
  *
- * @params {String} userName 用户名（忽略大小写）
+ * @params {String} user_name 用户名（忽略大小写）
  * @params {Function} cb 回调函数
  * @return {Object} 用户对象
  */
-UserSchema.statics.findUserByName = function(userName, cb){
+UserSchema.statics.findUserByName = function(user_name, cb){
 	this.findOne({
-		UserName: new RegExp('^'+ userName +'$', 'i')
+		UserName: new RegExp('^'+ user_name +'$', 'i')
 	}, null, null, function (err, doc){
 		if(err) return cb(err);
 		cb(null, doc);
@@ -69,15 +69,15 @@ UserSchema.statics.findUserByName = function(userName, cb){
 /**
  * 通过用户名或电子邮箱查找用户
  *
- * @params {String} userName 用户名（忽略大小写）
+ * @params {String} user_name 用户名（忽略大小写）
  * @params {String} email 电子邮箱（忽略大小写）
  * @params {Function} cb 回调函数
  * @return {Object} 用户对象
  */
-UserSchema.statics.findUserByNameEmail = function(userName, email, cb){
+UserSchema.statics.findUserByNameEmail = function(user_name, email, cb){
 	this.findOne({
 		'$or': [{
-			UserName: new RegExp('^'+ userName +'$', 'i')
+			UserName: new RegExp('^'+ user_name +'$', 'i')
 		}, {
 			Email: new RegExp('^'+ email +'$', 'i')
 		}]
