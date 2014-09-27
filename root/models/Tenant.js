@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	ObjectId = Schema.Types.ObjectId;
 
-var CompanySchema = new Schema({
+var TenantSchema = new Schema({
 	Name: {
 		type: String
 	}, Email: {
@@ -19,4 +19,4 @@ var CompanySchema = new Schema({
 	}
 });
 
-mongoose.model('Company', CompanySchema);
+mongoose.model('Tenant', TenantSchema);
