@@ -4,7 +4,7 @@ var conf = require('../settings'),
 var title = 'FOREWORLD 洪荒',
 	virtualPath = '/';
 
-var Manager = require('../biz/manager');
+var Manager = require('../biz/user');
 
 exports.loginUI = function(req, res, next){
 	res.render('manager/Login', {

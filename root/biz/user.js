@@ -3,20 +3,35 @@ var md5 = require('../lib/md5');
 var models = require('../models'),
 	User = models.User;
 
-exports.editInfo = function(newInfo, cb){
-	var id = newInfo.id;
-	delete newInfo.id;
-
+exports.remove = function(id, cb){
 	User.update({
 		_id: id
-	}, newInfo, function (err, count){
+	}, {
+		IsDel: 1
+	}, function (err, count){
+		if(err) return cb(err);
+		cb(null, 0, null, count);
+	});
+};
+
+exports.editInfo = function(info, cb){
+	User.update({
+		_id: info.id
+	}, {
+		Sex: info.Sex,
+		QQ: info.QQ
+	}, function (err, count){
 		if(err) return cb(err);
 		cb(null, 0, null, count);
 	});
 };
 
 exports.findAll = function(cb){
-	User.find(null, null, null, function (err, docs){
+	User.find(null, null, {
+		sort: {
+			_id: 1
+		}
+	}, function (err, docs){
 		if(err) return cb(err);
 		cb(null, 0, null, docs);
 	});
@@ -30,7 +45,7 @@ exports.findAll = function(cb){
  * @return
  */
 exports.login = function(logInfo, cb){
-	User.findUserByEmail(logInfo.Email, function (err, doc){
+	User.findByEmail(logInfo.Email, function (err, doc){
 		if(err) return cb(err);
 		if(!doc) return cb(null, 3, ['找不到该用户。', 'Email']);
 		if(md5.hex(logInfo.UserPass) !== doc.UserPass)
