@@ -39,9 +39,13 @@ exports.login = function(logInfo, cb){
 	});
 };
 
+exports.addMgr = function(newInfo, cb){
+
+};
+
 exports.register = function(newInfo, cb){
 	/* 查询邮箱是否存在 */
-	User.findUserByEmail(newInfo.Email, function (err, doc){
+	User.findByEmail(newInfo.Email, function (err, doc){
 		if(err) return cb(err);
 		/* 如果用户对象存在，则说明电子邮箱存在，返回提示信息 */
 		if(doc) return cb(null, 3, ['电子邮箱已经存在。', 'Email'], doc);
@@ -59,8 +63,8 @@ exports.register = function(newInfo, cb){
 	});
 };
 
-exports.findByName = function(userName, cb){
-	User.findUserByName(userName, function (err, doc){
+exports.findByName = function(user_name, cb){
+	User.findByName(user_name, function (err, doc){
 		if(err) return cb(err);
 		cb(null, 0, null, doc);
 	});
@@ -82,7 +86,7 @@ exports.changePwd = function(user_id, oldPass, newPass, cb){
 		if(err) return cb(err);
 		if(!doc) return cb(null, 3, ['找不到该用户。', 'Email']);
 		if(md5.hex(oldPass) !== doc.UserPass)
-			return cb(null, 6, ['密码输入错误。', 'UserPass'], doc);
+			return cb(null, 6, ['原始密码输入错误。', 'UserPass'], doc);
 		doc.update({
 			UserPass: md5.hex(newPass)
 		}, function (err, count){

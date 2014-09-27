@@ -7,6 +7,7 @@ var UserSchema = new Schema({
 		// required: true,
 		// match: /[a-z]/,
 		unique: true,
+		index: true,
 		type: String
 	}, UserPass: {			// 密码
 		type: String
@@ -17,7 +18,9 @@ var UserSchema = new Schema({
 		type: Number,
 		default: 3
 	}, Nickname: {			// 昵称
-		type: String
+		type: String,
+		index: true,
+		unique: true
 	}, Birthday: {			// 生日
 		type: Date
 	}, QQ: {
@@ -27,9 +30,8 @@ var UserSchema = new Schema({
 	}, Email: {				// 邮箱
 		type: String,
 		index: true,
+		unique: true,
 		required: true
-	}, SafeEmail: {			// 安全邮箱
-		type: String
 	}, Status: {			// 状态, 未激活0, 邮箱激活1, 短信激活2
 		type: Number,
 		default: 0
@@ -63,7 +65,7 @@ var UserSchema = new Schema({
  * @params {Function} cb 回调函数
  * @return {Object} 用户对象
  */
-UserSchema.statics.findUserByName = function(user_name, cb){
+UserSchema.statics.findByName = function(user_name, cb){
 	this.findOne({
 		UserName: new RegExp('^'+ user_name +'$', 'i')
 	}, null, null, function (err, doc){
@@ -80,7 +82,7 @@ UserSchema.statics.findUserByName = function(user_name, cb){
  * @params {Function} cb 回调函数
  * @return {Object} 用户对象
  */
-UserSchema.statics.findUserByNameEmail = function(user_name, email, cb){
+UserSchema.statics.findByNameEmail = function(user_name, email, cb){
 	this.findOne({
 		'$or': [{
 			UserName: new RegExp('^'+ user_name +'$', 'i')
@@ -100,7 +102,7 @@ UserSchema.statics.findUserByNameEmail = function(user_name, email, cb){
  * @params {Function} cb 回调函数
  * @return {Object} 用户对象
  */
-UserSchema.statics.findUserByEmail = function(email, cb){
+UserSchema.statics.findByEmail = function(email, cb){
 	this.findOne({
 		Email: new RegExp('^'+ email +'$', 'i')
 	}, null, null, function (err, doc){
