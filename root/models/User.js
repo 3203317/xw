@@ -32,10 +32,7 @@ var UserSchema = new Schema({
 		index: true,
 		unique: true,
 		required: true
-	}, Status: {			// 状态, 未激活0, 邮箱激活1, 短信激活2
-		type: Number,
-		default: 0
-	}, IsEnable: {
+	}, Status: {			// 状态, 未激活0, 邮箱激活1, 短信激活2，人工激活3
 		type: Number,
 		default: 0
 	}, IsDel: {				// 删除标记, 删除1, 否0
