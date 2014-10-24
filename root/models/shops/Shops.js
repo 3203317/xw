@@ -2,12 +2,12 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	ObjectId = Schema.Types.ObjectId;
 
-var util = require('../lib/util');
-
-var UserServiceSchema = new Schema({
-	User_Id: {		// 用户Id
-		type: ObjectId
-	}, Service_Id: {
+var ShopsSchema = new Schema({
+	ShopsName: {
+		type: String
+	}, Email: {
+		type: String
+	}, User_Id: {
 		type: ObjectId
 	}
 }, {
@@ -19,4 +19,4 @@ var UserServiceSchema = new Schema({
 	}
 });
 
-mongoose.model('UserService', UserServiceSchema);
+mongoose.model('Shops', ShopsSchema);

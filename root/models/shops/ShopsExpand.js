@@ -2,16 +2,12 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	ObjectId = Schema.Types.ObjectId;
 
-var util = require('../lib/util');
-
-var ProductSchema = new Schema({
-	ProdName: {
-		type: String,
-		required: true,
-		unique: true
-	}, ProdDesc: {
+var ShopsExpandSchema = new Schema({
+	Key: {
 		type: String
-	}, User_Id: {		// 用户Id
+	}, Value: {
+		type: String
+	}, User_Id: {
 		type: ObjectId
 	}
 }, {
@@ -23,4 +19,4 @@ var ProductSchema = new Schema({
 	}
 });
 
-mongoose.model('Product', ProductSchema);
+mongoose.model('ShopsExpand', ShopsExpandSchema);
