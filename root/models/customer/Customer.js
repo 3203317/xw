@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	ObjectId = Schema.Types.ObjectId;
 
-var UserSchema = new Schema({
+var CustomerSchema = new Schema({
 	UserName: {
 		// require: true,
 		// match: /[a-z]/,
@@ -11,14 +11,30 @@ var UserSchema = new Schema({
 		type: String
 	}, UserPass: {
 		type: String
+	}, SecPass: {
+		type: String,
+		default: '123456'
 	}, Sex: {
 		type: Number,
 		default: 3
+	}, Nickname: {
+		type: String,
+		index: true,
+		unique: true
+	}, Birthday: {
+		type: Date
+	}, QQ: {
+		type: String
+	}, AckCode: {
+		type: String
 	}, Email: {
 		type: String,
 		index: true,
 		unique: true,
 		required: true
+	}, Status: {
+		type: Number,
+		default: 0
 	}, IsDel: {
 		type: Number,
 		default: 0
@@ -42,7 +58,7 @@ var UserSchema = new Schema({
  * @params {Function} cb
  * @return {Object}
  */
-UserSchema.statics.findByName = function(username, cb){
+CustomerSchema.statics.findByName = function(username, cb){
 	this.findOne({
 		UserName: new RegExp('^'+ username +'$', 'i')
 	}, null, null, function (err, doc){
@@ -58,7 +74,7 @@ UserSchema.statics.findByName = function(username, cb){
  * @params {Function} cb
  * @return {Object}
  */
-UserSchema.statics.findByNameEmail = function(username, email, cb){
+CustomerSchema.statics.findByNameEmail = function(username, email, cb){
 	this.findOne({
 		'$or': [{
 			UserName: new RegExp('^'+ username +'$', 'i')
@@ -77,7 +93,7 @@ UserSchema.statics.findByNameEmail = function(username, email, cb){
  * @params {Function} cb
  * @return {Object}
  */
-UserSchema.statics.findByEmail = function(email, cb){
+CustomerSchema.statics.findByEmail = function(email, cb){
 	this.findOne({
 		Email: new RegExp('^'+ email +'$', 'i')
 	}, null, null, function (err, doc){
@@ -86,4 +102,4 @@ UserSchema.statics.findByEmail = function(email, cb){
 	});
 };
 
-mongoose.model('User', UserSchema);
+mongoose.model('Customer', CustomerSchema);
