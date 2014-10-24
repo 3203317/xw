@@ -2,11 +2,18 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	ObjectId = Schema.Types.ObjectId;
 
-var UserExpandSchema = new Schema({
-	Key: {
+var ModuleSchema = new Schema({
+	ModuleName: {
+		unique: true,
+		index: true,
 		type: String
-	}, Value: {
+	}, Url: {
 		type: String
+	}, Sort: {
+		type: Number,
+		default: 1
+	}, P_Id: {
+		type: ObjectId
 	}, User_Id: {
 		type: ObjectId
 	}
@@ -19,4 +26,4 @@ var UserExpandSchema = new Schema({
 	}
 });
 
-mongoose.model('UserExpand', UserExpandSchema);
+mongoose.model('Module', ModuleSchema);

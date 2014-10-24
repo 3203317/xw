@@ -2,10 +2,12 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	ObjectId = Schema.Types.ObjectId;
 
-var UserExpandSchema = new Schema({
-	Key: {
+var RoleSchema = new Schema({
+	RoleName: {
+		unique: true,
+		index: true,
 		type: String
-	}, Value: {
+	}, RoleDesc: {
 		type: String
 	}, User_Id: {
 		type: ObjectId
@@ -19,4 +21,4 @@ var UserExpandSchema = new Schema({
 	}
 });
 
-mongoose.model('UserExpand', UserExpandSchema);
+mongoose.model('Role', RoleSchema);
