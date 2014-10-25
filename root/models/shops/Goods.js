@@ -8,7 +8,7 @@ var GoodsSchema = new Schema({
                 required: true,
         }, GoodsDesc: {
                 type: String
-        }, User_Id: {
+        }, Shops_Id: {
                 type: ObjectId
         }
 }, {
